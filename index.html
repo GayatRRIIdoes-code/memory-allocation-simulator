@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Allocation Simulator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Operating Systems Lab</p>
+          <h1>Memory Allocation Simulator</h1>
+        </div>
+      </header>
+
+      <main class="dashboard">
+        <section class="panel input-panel">
+          <div class="panel-header">
+            <h2>Simulation Inputs</h2>
+          </div>
+
+          <div class="field-group">
+            <label for="memoryBlocksInput">Memory block sizes (KB)</label>
+            <input
+              id="memoryBlocksInput"
+              type="text"
+              placeholder="Example: 100, 500, 200, 300, 600"
+            />
+          </div>
+
+          <div class="field-group">
+            <label for="processSizesInput">Process sizes (KB)</label>
+            <input
+              id="processSizesInput"
+              type="text"
+              placeholder="Example: 212, 417, 112, 426"
+            />
+          </div>
+
+          <div class="field-group">
+            <label for="algorithmSelect">Allocation Strategy</label>
+            <select id="algorithmSelect">
+              <option value="first-fit">First Fit</option>
+              <option value="best-fit">Best Fit</option>
+              <option value="worst-fit">Worst Fit</option>
+            </select>
+          </div>
+
+          <div class="button-row">
+            <button id="allocateBtn" class="primary-btn">Allocate Memory</button>
+            <button id="compareBtn" class="secondary-btn">Compare Algorithms</button>
+            <button id="resetBtn" class="ghost-btn">Reset</button>
+          </div>
+
+          <div id="messageBox" class="message-box" aria-live="polite"></div>
+        </section>
+
+        <section class="panel stats-panel">
+          <div class="panel-header">
+            <h2>Statistics</h2>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="label">Memory Utilization</span>
+              <strong id="utilizationStat">0%</strong>
+            </div>
+            <div class="stat-card">
+              <span class="label">Allocated Processes</span>
+              <strong id="allocatedCountStat">0</strong>
+            </div>
+            <div class="stat-card">
+              <span class="label">Unallocated Processes</span>
+              <strong id="unallocatedCountStat">0</strong>
+            </div>
+            <div class="stat-card">
+              <span class="label">Remaining Free Memory</span>
+              <strong id="remainingFreeStat">0 KB</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel memory-panel">
+          <div class="panel-header">
+            <h2>Visual Memory Map</h2>
+          </div>
+
+          <div id="memoryMap" class="memory-map">
+            <div class="empty-state">
+              No simulation has been run yet. Enter memory sizes and processes to begin.
+            </div>
+          </div>
+
+          <div class="legend">
+            <div class="legend-item">
+              <span class="legend-swatch free"></span>
+              <span>Free Space</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-swatch allocated"></span>
+              <span>Allocated Process</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-swatch block"></span>
+              <span>Original Block</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel results-panel">
+          <div class="panel-header">
+            <h2>Allocation Results</h2>
+          </div>
+
+          <div class="table-wrap">
+            <table id="resultsTable">
+              <thead>
+                <tr>
+                  <th>Process ID</th>
+                  <th>Process Size</th>
+                  <th>Allocated Memory Block</th>
+                  <th>Allocated Size</th>
+                  <th>Remaining Space in Block</th>
+                  <th>Allocation Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="6" class="empty-row">
+                    No results yet. Run the simulator to see allocation details.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel comparison-panel">
+          <div class="panel-header">
+            <h2>Algorithm Comparison</h2>
+          </div>
+
+          <div class="table-wrap">
+            <table id="comparisonTable">
+              <thead>
+                <tr>
+                  <th>Algorithm</th>
+                  <th>Processes Allocated</th>
+                  <th>Processes Not Allocated</th>
+                  <th>Initial Memory</th>
+                  <th>Memory Allocated</th>
+                  <th>Free Memory Remaining</th>
+                  <th>Utilization</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="7" class="empty-row">
+                    Compare algorithms after entering the inputs.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
